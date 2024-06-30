@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import data from "../../src/data/data.json";
 
 export default function DetailPage() {
   const { id } = useParams();
   const [activity, setActivity] = useState();
 
   useEffect(() => {
-    fetch("/src/data/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const activity = data.find((activity) => activity.id === parseInt(id));
-        setActivity(activity);
-      });
+    const activity = data.find((activity) => activity.id === parseInt(id));
+    setActivity(activity);
   }, [id]);
+
   if (!activity) {
     return null;
   }
@@ -21,6 +19,7 @@ export default function DetailPage() {
   const handleBack = () => {
     window.history.back();
   };
+
   return (
     <>
       <button type="button" onClick={handleBack}>

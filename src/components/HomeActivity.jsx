@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import data from "../../src/data/data.json";
 
 export default function HomeActivity() {
   const [filteredActivities, setFilteredActivities] = useState();
 
   useEffect(() => {
-    fetch("/src/data/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setFilteredActivities(data);
-      });
+    setFilteredActivities(data);
   }, []);
-
-  console.info(filteredActivities);
 
   return (
     <>

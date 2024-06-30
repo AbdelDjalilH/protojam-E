@@ -1,22 +1,17 @@
 import { useState, useEffect } from "react";
 import { NavLink, useParams, Link } from "react-router-dom";
+import data from "../../src/data/data.json";
 
 export default function FilteredActivities() {
   const [filteredActivitiesData, setFilteredActivitiesData] = useState([]);
   const { category } = useParams();
 
   useEffect(() => {
-    fetch("/src/data/data.json")
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredData = data.filter(
-          (activity) => activity.category === category
-        );
-        setFilteredActivitiesData(filteredData);
-      });
+    const filteredData = data.filter(
+      (activity) => activity.category === category
+    );
+    setFilteredActivitiesData(filteredData);
   }, [category]);
-
-  console.info(filteredActivitiesData);
 
   return (
     <>

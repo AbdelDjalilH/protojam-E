@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Activity from "./Activity";
+import data from "../../src/data/data.json";
 
 export default function ActivitiesList() {
   const [activities, setActivities] = useState([]);
@@ -12,16 +13,12 @@ export default function ActivitiesList() {
     "Week-end déconnexion",
     "Parc",
     "Nuit insolite",
-    "Randonnée"
+    "Randonnée",
   ];
 
   useEffect(() => {
-    fetch('/src/data/data.json')
-      .then((response) => response.json())
-      .then((data) => {
-        setActivities(data);
-        setFilteredActivities(data); 
-      });
+    setActivities(data);
+    setFilteredActivities(data);
   }, []);
 
   useEffect(() => {
@@ -36,7 +33,10 @@ export default function ActivitiesList() {
 
   return (
     <>
-      <h1 className="text-center text-xl font-bold italic mb-6 mt-8"> Découvrez nos activités 🤩 </h1>
+      <h1 className="text-center text-xl font-bold italic mb-6 mt-8">
+        {" "}
+        Découvrez nos activités 🤩{" "}
+      </h1>
 
       <div className="flex justify-center mb-4">
         <select
